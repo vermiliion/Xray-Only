@@ -50,5 +50,9 @@ screen -r -d install
 - COPYRIGHT & LICENSE:
 - Script is licensed under CC BY-SA 4.0.
 - Copyright © 2025 by Lite Vermilion Project
-# Donate For Support
+
+**Donate For Support me:**
+![QRIS Image](https://github.com/vermiliion/Xray-Only/raw/main/Qris.jpeg)
+
 https://t.me/Lite_Vermilion
+I Can Only Speak Littel English😅
