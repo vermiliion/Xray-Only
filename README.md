@@ -50,5 +50,5 @@ screen -r -d install
 - COPYRIGHT & LICENSE:
 - Script is licensed under CC BY-SA 4.0.
 - Copyright © 2025 by Lite Vermilion Project
-
+# Donate For Support
 https://t.me/Lite_Vermilion
