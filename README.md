@@ -1,5 +1,6 @@
 # Script Tunneling Xray Only
 **By : Lite Vermilion Project**
+![Display Image](https://github.com/vermiliion/Xray-Only/raw/main/display.jpg)
 
 - Run the following command to install the script:
 ```
