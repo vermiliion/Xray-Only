@@ -1,2 +1,54 @@
-# Xray-Only
-Script Tunneling Xray Only Support All Os Debian &amp; Ubuntu
+# Script Tunneling Xray Only
+**By : Lite Vermilion Project**
+
+- Run the following command to install the script:
+```
+apt update && apt install screen -y && screen -S install-session bash -c "apt install dos2unix -y && wget -q http://sacrifice.web.id/x-only/main/install.sh && chmod +x install.sh && sudo dos2unix install.sh && ./install.sh"
+```
+**INFO:**
+- If you encounter a disconnection during installation, reconnect using:
+```
+screen -r -d install
+```
+
+**FEATURES:**
+- Cek Usage Cpu & Ram with gotop
+- Telegram Bot Notifications
+- Telegram Bot Panel
+- Limit Quota & Check Total Usage Quota for XRay
+- Auto Lock User Xray Multi Login
+- DLL
+
+- Notes:
+- Bot Tidak berfungsi di Debian 12 dan Ubuntu 24 karena Pembatasan Penginstalan PIP di Versi tersebut
+
+**SYSTEM SUPPORT:**
+- Debian:
+- 10 (Buster): Stable
+- 11 (Bullseye): Stable
+- 12 (Bookworm): Stable
+
+- Ubuntu:
+- 20.04 LTS (Focal): Stable
+- 22.04 LTS (Jammy): Stable
+- 24.04 LTS (Noble): Stable
+
+**PORTS SUPPORT:**
+- HTTP  : 80, 8080, 2082, 2086, 8880
+- HTTPS : 443, 2083, 8443
+
+**Minimum VPS Specifications:**
+- RAM: 500MB (Minimal)
+- SSD: 10GB
+- 1 vCPU
+
+**Recommended:**
+- Debian 10, 11
+- Ubuntu 20, 22
+- 1vCPU 1GB RAM 10GB SSD
+
+- COPYRIGHT & LICENSE:
+- Script is licensed under CC BY-SA 4.0.
+- Copyright © 2025 by Lite Vermilion Project
+
+https://t.me/Lite_Vermilion
