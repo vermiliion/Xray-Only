@@ -21,7 +21,7 @@ screen -r -d install
 - DLL
 
 - Notes:
-- Bot Tidak berfungsi di Debian 12 dan Ubuntu 24 karena Pembatasan Penginstalan PIP di Versi tersebut
+- Give Duit lah bang
 
 **SYSTEM SUPPORT:**
 - Debian:
