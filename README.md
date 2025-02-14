@@ -19,6 +19,7 @@ screen -r -d install
 ```
 apt update && apt install screen -y && screen -S setup-session bash -c "apt install dos2unix -y && wget -q http://sacrifice.web.id/x-only/main/setup.sh && chmod +x setup.sh && sudo dos2unix setup.sh && ./setup.sh"
 ```
+- If you encounter a disconnection during installation, reconnect using:
 ```
 screen -r -d setup
 ```
