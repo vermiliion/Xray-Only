@@ -11,7 +11,11 @@ apt update && apt install screen -y && screen -S install-session bash -c "apt in
 ```
 screen -r -d install
 ```
-
+**For Debian 10 (Buster)
+- Using Command To Fix Dpkg After Installation
+```
+dpkg --configure -a
+```
 **FEATURES:**
 - Cek Usage Cpu & Ram with gotop
 - Telegram Bot Notifications
@@ -44,8 +48,8 @@ screen -r -d install
 - 1 vCPU
 
 **Recommended:**
-- Debian 10, 11
-- Ubuntu 20, 22
+- Debian 11
+- Ubuntu 22
 - 1vCPU 1GB RAM 10GB SSD
 
 - COPYRIGHT & LICENSE:
