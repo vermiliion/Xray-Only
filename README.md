@@ -12,7 +12,7 @@ apt update && apt install screen -y && screen -S install-session bash -c "apt in
 screen -r -d install
 ```
 **For Debian 10 (Buster)**
-- Using Command To Fix Dpkg After Installation
+- Using Command To Fix Dpkg Before Or After Installation
 ```
 dpkg --configure -a
 ```
