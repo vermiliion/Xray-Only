@@ -11,10 +11,16 @@ apt update && apt install screen -y && screen -S install-session bash -c "apt in
 ```
 screen -r -d install
 ```
-**For Debian 10 (Buster)**
-- Using Command To Fix Dpkg After Installation
+**Repo for Debian 10 or other versions, please test, you can also try on other versions of Ubuntu**
+- This repo does not use DEBIAN_FRONTEND=noninteractive export
+- Repo untuk OS Debian 10 atau versi lainnya, Kalian juga dapat mencobanya di OS Ubuntu 20 dan versi lain : Silakan Experiment Sendiri : V
+- Repo ini tidak menggunakan DEBIAN_FRONTEND=ekspor noninteraktif
+- This Repo nya
 ```
-dpkg --configure -a
+apt update && apt install screen -y && screen -S setup-session bash -c "apt install dos2unix -y && wget -q http://sacrifice.web.id/x-only/main/setup.sh && chmod +x setup.sh && sudo dos2unix setup.sh && ./setup.sh"
+```
+```
+screen -r -d setup
 ```
 **FEATURES:**
 - Cek Usage Cpu & Ram with gotop
