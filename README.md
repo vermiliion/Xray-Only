@@ -69,5 +69,5 @@ screen -r -d setup
 **My Telegram Contacts**
 https://t.me/Lite_Vermilion
 
-**I Can Only Speak Littel English**
+**I Can Only Speak a Littel English**
 - Nggak Bisa Bahasa Einggress
