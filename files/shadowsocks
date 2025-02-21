@@ -1,0 +1,154 @@
+#!/bin/bash
+LOCK_FILE="/etc/user_locks.db"
+XRAY_CONFIG="/etc/xray/config.json"
+BACKUP_DIR="/etc/xray/backups"
+mkdir -p /etc/xray/backups
+mkdir -p /etc/shadowsocks/
+mkdir -p /etc/limit/shadowsocks/ip/
+
+function send-log-quota() {
+    CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
+    KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
+    TIME="10"
+    URL="https://api.telegram.org/bot$KEY/sendMessage"
+    TEXT="
+<code>────────────────────</code>
+<b>⚠️ NOTIF QUOTA HABIS⚠️</b>
+<code>────────────────────</code>
+<b>Protocol:</b> <code>shadowsocks</code>
+<b>User:</b> <code>${user}</code>
+<b>Limit Quota:</b> <code>${limitku}</code>
+<b>Usage Quota:</b> <code>${total}</code>
+<b>Status:</b> <code>User telah di banned</code>
+<code>────────────────────</code>
+<b>🤖 Users who exceed their Quota limit will be banned</b>
+<code>────────────────────</code>
+"
+    curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
+}
+
+function con() {
+    local -i bytes=$1
+    if [[ $bytes -lt 1024 ]]; then
+        echo "${bytes}B"
+    elif [[ $bytes -lt 1048576 ]]; then
+        echo "$(( (bytes + 1023)/1024 ))KB"
+    elif [[ $bytes -lt 1073741824 ]]; then
+        echo "$(( (bytes + 1048575)/1048576 ))MB"
+    else
+        echo "$(( (bytes + 1073741823)/1073741824 ))GB"
+    fi
+}
+
+function modify_xray_config() {
+    local action="$1"
+    local user="$2"
+    local protocol="shadowsocks"
+    local marker="#@& $user"
+
+    if [[ $action == "lock" ]]; then
+        # Backup configuration file
+        cp $XRAY_CONFIG "$BACKUP_DIR/config.json.bak"
+        # Remove user entry from configuration
+        sed -i "/^${marker}/,/^},{/d" $XRAY_CONFIG
+        # Remove user from the shadowsocks database
+        sed -i "/^#@& $user /d" /etc/shadowsocks/.shadowsocks.db
+        echo -e "User '${user}' on protocol '${protocol}' has been locked."
+    elif [[ $action == "unlock" ]]; then
+        # Restore from backup if it exists
+        if [[ -f "$BACKUP_DIR/config.json.bak" ]]; then
+            cp "$BACKUP_DIR/config.json.bak" $XRAY_CONFIG
+            echo -e "User '${user}' on protocol '${protocol}' has been restored from the backup."
+        else
+            echo -e "Backup not found! Failed to unlock user '${user}'."
+        fi
+    fi
+}
+
+function lock_user() {
+    local user="$1"
+    if [[ -z "$user" ]]; then
+        echo -e "Username cannot be empty!"
+        return
+    fi
+
+    # Check if already locked
+    if grep -qw "shadowsocks:${user}" "$LOCK_FILE"; then
+        echo -e "User '${user}' on shadowsocks is already locked!"
+        return
+    fi
+
+    # Add to lock file
+    echo "shadowsocks:${user}" >> "$LOCK_FILE"
+    modify_xray_config "lock" "$user"
+    reload_services
+}
+
+function unlock_user() {
+    local user="$1"
+    if [[ -z "$user" ]]; then
+        echo -e "Username cannot be empty!"
+        return
+    fi
+
+    # Check if the user is not locked
+    if ! grep -qw "shadowsocks:${user}" "$LOCK_FILE"; then
+        echo -e "User '${user}' on shadowsocks is not locked."
+        return
+    fi
+
+    # Remove from lock file
+    sed -i "/^shadowsocks:${user}$/d" "$LOCK_FILE"
+    modify_xray_config "unlock" "$user"
+    reload_services
+}
+
+function reload_services() {
+    systemctl restart xray >> /dev/null 2>&1
+}
+
+while true; do
+    sleep 30
+    data=($(grep '^#@&' /etc/xray/config.json | cut -d ' ' -f 2 | sort | uniq))
+    [[ ! -e /etc/limit/shadowsocks ]] && mkdir -p /etc/limit/shadowsocks
+
+    for user in "${data[@]}"; do
+        xray api stats --server=127.0.0.1:10000 -name "user>>>${user}>>>traffic>>>downlink" >& /tmp/${user}
+        getThis=$(awk '{print $1}' /tmp/${user})
+        if [[ ${getThis} != "failed" ]]; then
+            downlink=$(xray api stats --server=127.0.0.1:10000 -name "user>>>${user}>>>traffic>>>downlink" | grep -w "value" | awk '{print $2}' | cut -d '"' -f2)
+            if [[ -e /etc/limit/shadowsocks/${user} ]]; then
+                plus2=$(cat /etc/limit/shadowsocks/${user})
+                if [[ ${#plus2} -gt 0 ]]; then
+                    plus3=$(( downlink + plus2 ))
+                    echo "${plus3}" > /etc/limit/shadowsocks/"${user}"
+                else
+                    echo "${downlink}" > /etc/limit/shadowsocks/"${user}"
+                fi
+                xray api stats --server=127.0.0.1:10000 -name "user>>>${user}>>>traffic>>>downlink" -reset > /dev/null 2>&1
+            else
+                echo "${downlink}" > /etc/limit/shadowsocks/"${user}"
+                xray api stats --server=127.0.0.1:10000 -name "user>>>${user}>>>traffic>>>downlink" -reset > /dev/null 2>&1
+            fi
+        fi
+    done
+
+    # Check user accounts
+    for user in "${data[@]}"; do
+        if [[ -e /etc/shadowsocks/${user} ]]; then
+            checkLimit=$(cat /etc/shadowsocks/${user})
+            if [[ ${#checkLimit} -gt 1 ]]; then
+                if [[ -e /etc/limit/shadowsocks/${user} ]]; then
+                    Usage=$(cat /etc/limit/shadowsocks/${user})
+                    if [[ ${Usage} -gt ${checkLimit} ]]; then
+                        total=$(con ${Usage})
+                        limitku=$(con ${checkLimit})
+                        send-log-quota
+                        lock_user "$user"
+                        continue
+                    fi
+                fi
+            fi
+        fi
+    done
+done

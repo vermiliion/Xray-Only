@@ -1,0 +1,12 @@
+[Unit]
+Description=Limiter TRJ Service
+Documentation=FreenetLite
+After=syslog.target network-online.target
+
+[Service]
+User=root
+NoNewPrivileges=true
+ExecStart=/usr/local/bin/notif-limit-trj
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,12 @@
+[Unit]
+Description=Limiter VL Service
+Documentation=FreenetLite
+After=syslog.target network-online.target
+
+[Service]
+User=root
+NoNewPrivileges=true
+ExecStart=/usr/local/bin/notif-limit-vl
+
+[Install]
+WantedBy=multi-user.target

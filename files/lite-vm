@@ -1,0 +1,121 @@
+#!/bin/bash
+clear
+LOCK_FILE="/etc/user_locks.db"
+XRAY_CONFIG="/etc/xray/config.json"
+BACKUP_DIR="/etc/xray/backups"
+mkdir -p /etc/xray/backups
+mkdir -p /etc/vmess/
+mkdir -p /etc/limit/vmess/ip/
+
+# Fungsi untuk mengirimkan notifikasi IP
+function send-ip() {
+    CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
+    KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
+    TIME="10"
+    URL="https://api.telegram.org/bot$KEY/sendMessage"
+    TEXT="
+<code>────────────────────</code>
+<b>⚠️ NOTIF MULTI LOGIN⚠️</b>
+<code>────────────────────</code>
+<b>Protocol:</b> <code>vmess</code>
+<b>User:</b> <code>${user}</code>
+<b>Limit IP:</b> <code>${limit_ip} IP</code>
+<b>IP Login:</b> <code>${login_count} IP</code>
+<b>Status:</b> <code>User telah di banned</code>
+<code>────────────────────</code>
+<b>🤖 Users who exceed their IP login limit will be banned</b>
+<code>────────────────────</code>
+"
+    curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
+}
+
+# Fungsi untuk mengunci user
+reload_services() {
+    systemctl restart xray >/dev/null 2>&1
+}
+
+# Function to modify Xray configuration file for vmess
+modify_xray_config() {
+    local action="$1"
+    local user="$2"
+    local protocol="vmess"
+    local marker="### $user"
+
+    if [[ $action == "lock" ]]; then
+        # Backup configuration file
+        cp $XRAY_CONFIG "$BACKUP_DIR/config.json.bak"
+        # Remove user entry from configuration
+        sed -i "/^${marker}/,/^},{/d" $XRAY_CONFIG
+        echo -e "User '${user}' on protocol '${protocol}' has been locked."
+    elif [[ $action == "unlock" ]]; then
+        # Restore from backup if it exists
+        if [[ -f "$BACKUP_DIR/config.json.bak" ]]; then
+            cp "$BACKUP_DIR/config.json.bak" $XRAY_CONFIG
+            echo -e "User '${user}' on protocol '${protocol}' has been restored from the backup."
+        else
+            echo -e "Backup not found! Failed to unlock user '${user}'."
+        fi
+    fi
+}
+
+lock_user() {
+    local user="$1"
+    if [[ -z "$user" ]]; then
+        echo -e "Username cannot be empty!"
+        return
+    fi
+
+    # Check if already locked
+    if grep -qw "vmess:${user}" "$LOCK_FILE"; then
+        echo -e "User '${user}' on vmess is already locked!"
+        return
+    fi
+
+    # Add to lock file
+    echo "vmess:${user}" >> "$LOCK_FILE"
+    modify_xray_config "lock" "$user"
+    reload_services
+}
+
+# Fungsi utama untuk memantau penggunaan
+while true; do
+    clear
+    > /tmp/other.txt
+
+    # Ambil daftar user dari config.json
+    data=($(grep -E "^###" "$XRAY_CONFIG" | cut -d ' ' -f 2 | sort -u))
+    for user in "${data[@]}"; do
+        [[ -z "$user" ]] && continue
+
+        > /tmp/ipvmess.txt
+
+        data2=($(grep -w "$user" /var/log/xray/access.log | tail -n 500 | awk '{print $3}' | sed 's/tcp://g' | cut -d ":" -f 1 | sort -u))
+        for ip in "${data2[@]}"; do
+            grep -qw "$ip" /var/log/xray/access.log && echo -e "$ip" >> /tmp/ipvmess.txt
+        done
+
+        # Proses hanya jika ada IP yang ditemukan
+        if [[ -s /tmp/ipvmess.txt ]]; then
+            raw_limit_ip=$(cat /etc/limit/vmess/ip/"$user" 2>/dev/null || echo 2)
+            limit_ip=$(echo "$raw_limit_ip" | grep -o '[0-9]\+')
+
+            # Hitung login IP
+            login_count=$(wc -l < /tmp/ipvmess.txt)
+
+            echo -e "User        : $user"
+            echo -e "Limit Login : ${limit_ip} IP"
+            echo -e "Active IP   : $login_count IP"
+
+            # Cek batas login IP
+            if [[ "$login_count" -gt "$limit_ip" ]]; then
+                send-ip
+                lock_user "$user"
+                continue
+            fi
+        fi
+    done
+    
+    rm -f /tmp/other.txt /tmp/ipvmess.txt
+    echo -n > /var/log/xray/access.log
+    sleep 60
+done

@@ -1,0 +1,12 @@
+[Unit]
+Description=Limiter VM Service
+Documentation=FreenetLite
+After=syslog.target network-online.target
+
+[Service]
+User=root
+NoNewPrivileges=true
+ExecStart=/usr/local/bin/notif-limit-vm
+
+[Install]
+WantedBy=multi-user.target
