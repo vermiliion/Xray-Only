@@ -1,4 +1,4 @@
-**PROJECT BY:**
+- PROJECT BY:
 - LITE VERMILION
 - Hallo Guys...!!!
 ![Display Image](https://github.com/vermiliion/Xray-Only/raw/main/display.jpg)
