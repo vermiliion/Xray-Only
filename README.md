@@ -1,10 +1,10 @@
-# Script Tunneling Xray Only
-**By : Lite Vermilion Project**
+**PROJECT BY: LITE VERMILION**
+- Hallo Guys...!!!
 ![Display Image](https://github.com/vermiliion/Xray-Only/raw/main/display.jpg)
 
 - Run the following command to install the script:
 ```
-apt update && apt install screen -y && screen -S install-session bash -c "apt install dos2unix -y && wget -q http://sacrifice.web.id/x-only/main/install.sh && chmod +x install.sh && sudo dos2unix install.sh && ./install.sh"
+apt update && apt install screen -y && screen -S install-session bash -c "apt install dos2unix -y && wget -q https://raw.githubusercontent.com/vermiliion/Xray-Only/main/install.sh && chmod +x install.sh && sudo dos2unix install.sh && ./install.sh"
 ```
 **INFO:**
 - If you encounter a disconnection during installation, reconnect using:
@@ -17,7 +17,7 @@ screen -r -d install
 - Repo ini tidak menggunakan DEBIAN_FRONTEND=ekspor noninteraktif
 - This Repo nya
 ```
-apt update && apt install screen -y && screen -S setup-session bash -c "apt install dos2unix -y && wget -q http://sacrifice.web.id/x-only/main/setup.sh && chmod +x setup.sh && sudo dos2unix setup.sh && ./setup.sh"
+apt update && apt install screen -y && screen -S setup-session bash -c "apt install dos2unix -y && wget -q https://raw.githubusercontent.com/vermiliion/Xray-Only/main/setup.sh && chmod +x setup.sh && sudo dos2unix setup.sh && ./setup.sh"
 ```
 - If you encounter a disconnection during installation, reconnect using:
 ```
@@ -32,9 +32,12 @@ screen -r -d setup
 - DLL
 
 - Notes:
-- Give Duit lah bang
+- Jika Kalian Suka Jangan Lupa Support Dengan:
+- Donate
+- Join Group & Channel
+- Salam Gretogers
 
-**SYSTEM SUPPORT:**
+**SUPPORT DI OS:**
 - Debian:
 - 10 (Buster): Stable
 - 11 (Bullseye): Stable
@@ -45,21 +48,17 @@ screen -r -d setup
 - 22.04 LTS (Jammy): Stable
 - 24.04 LTS (Noble): Stable
 
-**PORTS SUPPORT:**
+**SUPPORT DI PORTS:**
 - HTTP  : 80, 8080, 2082, 2086, 8880
 - HTTPS : 443, 2083, 8443
 
 **Minimum VPS Specifications:**
-- RAM: 500MB (Minimal)
+- RAM: 1 GB (Minimal)
 - SSD: 10GB
 - 1 vCPU
 
-**Recommended:**
-- Debian 11
-- Ubuntu 22
-- 1vCPU 1GB RAM 10GB SSD
 
-- COPYRIGHT & LICENSE:
+**COPYRIGHT & LICENSE:**
 - Script is licensed under CC BY-SA 4.0.
 - Copyright © 2025 by Lite Vermilion Project
 
@@ -68,4 +67,4 @@ screen -r -d setup
 
 **My Telegram Contacts**
 https://t.me/Lite_Vermilion
-- I Can Only Speak Littel English😅
+**I Can Only Speak Littel Englis**
