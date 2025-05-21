@@ -6,11 +6,11 @@
 - Run the following command to install the script:
 - Step 1
 ```
-apt update -y && apt upgrade -y --fix-missing && apt install -y xxd bzip2 wget curl sudo && update-grub && apt dist-upgrade -y && sleep 2 && reboot
+apt update -y && apt upgrade -y --fix-missing && apt install -y xxd bzip2 wget curl sudo bsdmainutils screen dos2unix && update-grub && apt dist-upgrade -y && sleep 2 && reboot
 ```
 - step 2
 ```
-apt update && apt install screen -y && screen -S install-session bash -c "apt install dos2unix -y && wget -q https://raw.githubusercontent.com/vermiliion/Xray-Only/main/install.sh && chmod +x install.sh && sudo dos2unix install.sh && ./install.sh"
+screen -S install-session bash -c "wget -q https://raw.githubusercontent.com/vermiliion/Xray-Only/main/install.sh && chmod +x install.sh && sudo dos2unix install.sh && ./install.sh"
 ```
 **INFO:**
 - If you encounter a disconnection during installation, reconnect using:
@@ -24,11 +24,11 @@ screen -r -d install
 - This Repo nya
 - Step 1
 ```
-apt update -y && apt upgrade -y --fix-missing && apt install -y xxd bzip2 wget curl sudo && update-grub && apt dist-upgrade -y && sleep 2 && reboot
+apt update -y && apt upgrade -y --fix-missing && apt install -y xxd bzip2 wget curl sudo bsdmainutils screen dos2unix && update-grub && apt dist-upgrade -y && sleep 2 && reboot
 ```
 - step 2
 ```
-apt update && apt install screen -y && screen -S setup-session bash -c "apt install dos2unix -y && wget -q https://raw.githubusercontent.com/vermiliion/Xray-Only/main/setup.sh && chmod +x setup.sh && sudo dos2unix setup.sh && ./setup.sh"
+screen -S setup-session bash -c "wget -q https://raw.githubusercontent.com/vermiliion/Xray-Only/main/setup.sh && chmod +x setup.sh && sudo dos2unix setup.sh && ./setup.sh"
 ```
 - If you encounter a disconnection during installation, reconnect using:
 ```
