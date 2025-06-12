@@ -6,30 +6,13 @@
 - Run the following command to install the script:
 - Step 1
 ```
-apt update -y && apt upgrade -y --fix-missing && apt install -y xxd bzip2 wget curl sudo bsdmainutils screen dos2unix && update-grub && apt dist-upgrade -y && sleep 2 && reboot
+apt update -y && apt upgrade -y --fix-missing && apt install -y xxd bzip2 wget curl sudo build-essential bsdmainutils screen dos2unix && update-grub && apt dist-upgrade -y && sleep 2 && reboot
 ```
 - step 2
 ```
-screen -S install-session bash -c "wget -q https://raw.githubusercontent.com/vermiliion/Xray-Only/main/install.sh && chmod +x install.sh && sudo dos2unix install.sh && ./install.sh"
+screen -S setup-session bash -c "wget -q https://raw.githubusercontent.com/vermiliion/Xray-Only/main/setup.sh && chmod +x setup.sh && ./setup.sh"
 ```
 **INFO:**
-- If you encounter a disconnection during installation, reconnect using:
-```
-screen -r -d install
-```
-**Repo for Debian 10 or other versions, please test, you can also try on other versions of Ubuntu**
-- This repo does not use DEBIAN_FRONTEND=noninteractive export
-- Repo untuk OS Debian 10 atau versi lainnya, Kalian juga dapat mencobanya di OS Ubuntu 20 dan versi lain : Silakan Experiment Sendiri : V
-- Repo ini tidak menggunakan DEBIAN_FRONTEND=ekspor noninteraktif
-- This Repo nya
-- Step 1
-```
-apt update -y && apt upgrade -y --fix-missing && apt install -y xxd bzip2 wget curl sudo bsdmainutils screen dos2unix && update-grub && apt dist-upgrade -y && sleep 2 && reboot
-```
-- step 2
-```
-screen -S setup-session bash -c "wget -q https://raw.githubusercontent.com/vermiliion/Xray-Only/main/setup.sh && chmod +x setup.sh && sudo dos2unix setup.sh && ./setup.sh"
-```
 - If you encounter a disconnection during installation, reconnect using:
 ```
 screen -r -d setup
