@@ -1,7 +1,6 @@
 - PROJECT BY:
 - LITE VERMILION
-- Hallo Guys...!!!
-![Display Image](https://github.com/vermiliion/Xray-Only/raw/main/display.jpg)
+- Hallo Guys Welcome To My Project
 
 - Run the following command to install the script:
 - Step 1
@@ -16,6 +15,10 @@ screen -S setup-session bash -c "wget -q https://raw.githubusercontent.com/vermi
 - If you encounter a disconnection during installation, reconnect using:
 ```
 screen -r -d setup
+```
+**Update Script**
+```
+wget -q https://raw.githubusercontent.com/vermiliion/Xray-Only/main/update.sh && chmod +x update.sh && ./update.sh && rm -rf update.sh
 ```
 **FEATURES:**
 - Cek Usage Cpu & Ram with gotop
