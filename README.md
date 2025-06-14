@@ -1,5 +1,4 @@
-- PROJECT BY:
-- LITE VERMILION
+**PROJECT BY: LITE VERMILION**
 - Hallo Guys Welcome To My Project
 
 - Run the following command to install the script:
