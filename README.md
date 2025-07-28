@@ -1,6 +1,10 @@
 **Nggak Suka Terimakasih Sukanya Donasi :V**
 ![QRIS Image](https://github.com/vermiliion/Xray-Only/raw/main/Qris.jpeg)
 
+Jika kamu merasa project ini bermanfaat, kamu bisa traktir saya kopi lewat [Saweria](https://saweria.co/vermiliion)!
+
+[![Donate via Saweria](https://img.shields.io/badge/Saweria-Donate-orange?style=for-the-badge&logo=buymeacoffee)](https://saweria.co/vermiliion)
+
 **PROJECT LITE VERMILION**
 
 ![ui Image](https://github.com/vermiliion/Xray-Only/raw/main/ui.jpg)
@@ -54,4 +58,4 @@ wget -q https://raw.githubusercontent.com/vermiliion/Xray-Only/main/update.sh &&
 
 **COPYRIGHT & LICENSE:**
 - Script is licensed under CC BY-SA 4.0.
-- Copyright © 2025 by Lite Vermilion Project
+- Copyright Â© 2025 by Lite Vermilion Project
