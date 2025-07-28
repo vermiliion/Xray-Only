@@ -58,11 +58,5 @@ wget -q https://raw.githubusercontent.com/vermiliion/Xray-Only/main/update.sh &&
 - Script is licensed under CC BY-SA 4.0.
 - Copyright © 2025 by Lite Vermilion Project
 
-**Donate For Support me:**
+**Nggak Suka Terimakasih Sukanya Donasi 🗿**
 ![QRIS Image](https://github.com/vermiliion/Xray-Only/raw/main/Qris.jpeg)
-
-**My Telegram Contacts**
-https://t.me/Lite_Vermilion
-
-**I Can Only Speak a Littel English**
-- Nggak Bisa Bahasa Einggress
