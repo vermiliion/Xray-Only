@@ -31,6 +31,7 @@ wget -q https://raw.githubusercontent.com/vermiliion/Xray-Only/main/update.sh &&
 - Cek Usage Cpu & Ram with gotop
 - Telegram Bot Notifications
 - Telegram Bot Panel
+- Custom Ganti UUID Xray
 - Limit Quota & Check Total Usage Quota for XRay
 - Auto Lock User Xray Multi Login
 - DLL
