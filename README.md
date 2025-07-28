@@ -3,7 +3,7 @@
 
 **PROJECT LITE VERMILION**
 
-![ui Image](https://github.com/vermiliion/Xray-Only/raw/main/ui.jpeg)
+![ui Image](https://github.com/vermiliion/Xray-Only/raw/main/ui.jpg)
 
 - Run the following command to install the script:
 - Step 1
