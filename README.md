@@ -1,5 +1,9 @@
-**PROJECT BY: LITE VERMILION**
-- Hallo Guys Welcome To My Project
+**Nggak Suka Terimakasih Sukanya Donasi :V**
+![QRIS Image](https://github.com/vermiliion/Xray-Only/raw/main/Qris.jpeg)
+
+**PROJECT LITE VERMILION**
+
+![ui Image](https://github.com/vermiliion/Xray-Only/raw/main/ui.jpeg)
 
 - Run the following command to install the script:
 - Step 1
@@ -27,12 +31,6 @@ wget -q https://raw.githubusercontent.com/vermiliion/Xray-Only/main/update.sh &&
 - Auto Lock User Xray Multi Login
 - DLL
 
-- Notes:
-- Jika Kalian Suka Jangan Lupa Support Dengan:
-- Donate
-- Join Group & Channel
-- Salam Gretogers
-
 **SUPPORT DI OS:**
 - Debian:
 - 10 (Buster): Stable
@@ -57,6 +55,3 @@ wget -q https://raw.githubusercontent.com/vermiliion/Xray-Only/main/update.sh &&
 **COPYRIGHT & LICENSE:**
 - Script is licensed under CC BY-SA 4.0.
 - Copyright © 2025 by Lite Vermilion Project
-
-**Nggak Suka Terimakasih Sukanya Donasi 🗿**
-![QRIS Image](https://github.com/vermiliion/Xray-Only/raw/main/Qris.jpeg)
