@@ -10,11 +10,15 @@ Jika kamu merasa project ini bermanfaat, kamu bisa traktir saya kopi lewat [Sawe
 ![ui Image](https://github.com/vermiliion/Xray-Only/raw/main/ui.jpg)
 
 - Run the following command to install the script:
-- Step 1
+- step 1
+```
+echo -e "net.ipv6.conf.all.disable_ipv6 = 1\nnet.ipv6.conf.default.disable_ipv6 = 1\nnet.ipv6.conf.lo.disable_ipv6 = 1" >> /etc/sysctl.conf && sysctl -p
+```
+- Step 2
 ```
 apt update -y && apt upgrade -y --fix-missing && apt install -y xxd bzip2 wget curl sudo build-essential bsdmainutils screen dos2unix && update-grub && apt dist-upgrade -y && sleep 2 && reboot
 ```
-- step 2
+- step 3
 ```
 screen -S setup-session bash -c "wget -q https://raw.githubusercontent.com/vermiliion/Xray-Only/main/setup.sh && chmod +x setup.sh && ./setup.sh"
 ```
