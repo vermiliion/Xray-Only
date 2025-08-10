@@ -8,7 +8,8 @@ Dan Ternyata Script Yang Di Maksud Adalah Script Ini Yang Ada Di Reposytori Saya
 Jadi Kasihan kan Untuk Yg Lain Yang Sebenarnya Gratis Tapi Malah Di Perjual Belikan.
 
 - Jika Sahabat Sekalian Mau Beli Scriptnya Biar Jadi Milik Sahabat
-- Silahkan Hubungin t.me/freenet_on
+- Silahkan Hubungi Kontak Telegram Saya
+t.me/freenet_on
 - Nanti Dapet Source Code Aslinya, Harganya Cukup Rp.95k Aja Untuk Sahabat Sekalian 🫡
 - Saya Juga Ada Script Yang ada Menu SSH nya Lengkap Sama Bot Untuk Jualan 😁
 - Harga Sewanya:
