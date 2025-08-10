@@ -1,4 +1,4 @@
-Assalamua'laikum Warahmatullahi Wabarrakatuh Sahabat 🫡
+**Assalamua'laikum Warahmatullahi Wabarrakatuh Sahabat 🫡**
 - Script Ini Saya Buat Untuk Membantu Para Sahabat Sekalian untuk Jualan Akun VPN Xray Atau Untuk Berbagi Juga 😁
 - Jadi Harap Di Gunakan Dengan Bijak Nggeh 🫡
 
@@ -17,8 +17,8 @@ https://t.me/freenet_on
 - 25k aja per 3 Bulan 1 IP VPS
 - 75k aja per 1 Tahun 2 IP VPS
 
-## Cara Pasang Script
-Gunakan Perintah Ini Untuk Install scriptnya, salin lalu tempel atau paste di VPS Secara Berurutan:
+**Cara Pasang Script**
+- Gunakan Perintah Ini Untuk Install scriptnya, salin lalu tempel atau paste di VPS Secara Berurutan:
 
 - Langkah Ke 1
 ```
@@ -41,31 +41,33 @@ screen -r -d setup
 ```
 wget -q https://raw.githubusercontent.com/vermiliion/Xray-Only/main/update.sh && chmod +x update.sh && ./update.sh && rm -rf update.sh
 ```
-## Terimakasih Untuk BIN456789
 
+**Terimakasih Untuk BIN456789**
+
+**rebuil deb 10**
 <pre><code>curl -O https://raw.githubusercontent.com/bin456789/reinstall/main/reinstall.sh && bash reinstall.sh debian 10 && reboot</code></pre>
-## rebuil deb 11
+**rebuil deb 11**
 
 <pre><code>curl -O https://raw.githubusercontent.com/bin456789/reinstall/main/reinstall.sh && bash reinstall.sh debian 11 && reboot</code></pre>
-## rebuild deb 12
+**rebuild deb 12**
 
 <pre><code>curl -O https://raw.githubusercontent.com/bin456789/reinstall/main/reinstall.sh && bash reinstall.sh debian 12 && reboot</code></pre>
-## rebuild ubuntu 20.04
+**rebuild ubuntu 20**
 
 <pre><code>curl -O https://raw.githubusercontent.com/bin456789/reinstall/main/reinstall.sh && bash reinstall.sh ubuntu 20.04 && reboot</code></pre>
-## rebuild ubuntu 22
+**rebuild ubuntu 22**
 
 <pre><code>curl -O https://raw.githubusercontent.com/bin456789/reinstall/main/reinstall.sh && bash reinstall.sh ubuntu 22.04 && reboot</code></pre>
-## rebuild ubuntu 24
+**rebuild ubuntu 24**
 
 <pre><code>curl -O https://raw.githubusercontent.com/bin456789/reinstall/main/reinstall.sh && bash reinstall.sh ubuntu 24.04 && reboot</code></pre>
 
-## Rebuild ubuntu 25
+**Rebuild ubuntu 25**
 ```
 curl -O https://raw.githubusercontent.com/bin456789/reinstall/main/reinstall.sh && bash reinstall.sh ubuntu 25.04 && reboot
 ```
 
-## FITUR
+**FITUR:**
 
 - Cek penggunaan CPU & RAM dengan gotop
 - Notifikasi Bot Telegram
@@ -75,8 +77,7 @@ curl -O https://raw.githubusercontent.com/bin456789/reinstall/main/reinstall.sh 
 - Kunci Otomatis Pengguna Xray yang Multi Login
 - Dan lain-lain
 
-
-## MENDUKUNG DI OS:
+**MENDUKUNG DI OS:**
 - Debian:
 
 - 10 (Buster): Stabil
@@ -91,19 +92,19 @@ curl -O https://raw.githubusercontent.com/bin456789/reinstall/main/reinstall.sh 
 - 25.04 LTS (Noble): Stabil (Kecuali Bot)
 
 
-## MENDUKUNG DI PORT:
+**MENDUKUNG DI PORT:**
 
 - HTTP  : 80, 8080, 2082, 2086, 8880
 - HTTPS : 443, 2083, 8443
 
-## Spesifikasi Minimum VPS:
+**Spesifikasi Minimum VPS:**
 
 - RAM: 1 GB (Minimal)
 - SSD: 10 GB
 - 1 vCPU
 
 
-## HAK CIPTA & LISENSI:
+**HAK CIPTA & LISENSI:**
 
 Skrip dilisensikan di bawah CC BY-SA 4.0.
 Hak Cipta © 2025 oleh Lite Vermilion Project
