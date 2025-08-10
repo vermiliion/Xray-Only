@@ -1,92 +1,110 @@
-**Nggak Suka Terimakasih Sukanya Donasi :V**
-![QRIS Image](https://github.com/vermiliion/Xray-Only/raw/main/Qris.jpeg)
+Assalamua'laikum Warahmatullahi Wabarrakatuh Sahabat 🫡
+- Script Ini Saya Buat Untuk Membantu Para Sahabat Sekalian untuk Jualan Akun VPN Xray Atau Untuk Berbagi Juga 😁
+- Jadi Harap Di Gunakan Dengan Bijak Nggeh 🫡
 
-Jika kamu merasa project ini bermanfaat, kamu bisa traktir saya kopi lewat [Saweria](https://saweria.co/vermiliion)!
+- Jangan Sampai Di Perjual Belikan Ya Sahabat 🤩
+- Contoh Aku Ada Script Xray All Os Nih Mau Beli Nggak?
+Dan Ternyata Script Yang Di Maksud Adalah Script Ini Yang Ada Di Reposytori Saya,
+Jadi Kasihan kan Untuk Yg Lain Yang Sebenarnya Gratis Tapi Malah Di Perjual Belikan.
 
-[![Donate via Saweria](https://img.shields.io/badge/Saweria-Donate-orange?style=for-the-badge&logo=buymeacoffee)](https://saweria.co/vermiliion)
+- Jika Sahabat Sekalian Mau Beli Scriptnya Biar Jadi Milik Sahabat
+- Silahkan Hubungin t.me/freenet_on
+- Nanti Dapet Source Code Aslinya, Harganya Cukup Rp.95k Aja Untuk Sahabat Sekalian 🫡
+- Saya Juga Ada Script Yang ada Menu SSH nya Lengkap Sama Bot Untuk Jualan 😁
+- Harga Sewanya:
+- 10k aja per 1 bulan 1 IP VPS
+- 25k aja per 3 Bulan 1 IP VPS
+- 75k aja per 1 Tahun 2 IP VPS
 
-**PROJECT LITE VERMILION**
+## Cara Pasang Script
+Gunakan Perintah Ini Untuk Install scriptnya, salin lalu tempel atau paste di VPS Secara Berurutan:
 
-![ui Image](https://github.com/vermiliion/Xray-Only/raw/main/ui.jpg)
-
-- Run the following command to install the script:
-- step 1
+- Langkah Ke 1
 ```
 echo -e "net.ipv6.conf.all.disable_ipv6 = 1\nnet.ipv6.conf.default.disable_ipv6 = 1\nnet.ipv6.conf.lo.disable_ipv6 = 1" >> /etc/sysctl.conf && sysctl -p
 ```
-- Step 2
+- Langkah Ke 2
 ```
 apt update -y && apt upgrade -y --fix-missing && apt install -y xxd bzip2 wget curl sudo build-essential bsdmainutils screen dos2unix && update-grub && apt dist-upgrade -y && sleep 2 && reboot
 ```
-- step 3
+- Langkah Ke 3
 ```
 screen -S setup-session bash -c "wget -q https://raw.githubusercontent.com/vermiliion/Xray-Only/main/setup.sh && chmod +x setup.sh && ./setup.sh"
 ```
 **INFO:**
-- If you encounter a disconnection during installation, reconnect using:
+- Jika mengalami putus koneksi saat instalasi, sambungkan kembali dengan perintah:
 ```
 screen -r -d setup
 ```
-**Update Script**
+**Untuk Perbarui Script**
 ```
 wget -q https://raw.githubusercontent.com/vermiliion/Xray-Only/main/update.sh && chmod +x update.sh && ./update.sh && rm -rf update.sh
 ```
-### CLEAR INSTALLER SCRIPT IN YOUR VPS THANKS FOR BIN456789
-### rebuild deb 10 selain do
+## Terimakasih Untuk BIN456789
 
 <pre><code>curl -O https://raw.githubusercontent.com/bin456789/reinstall/main/reinstall.sh && bash reinstall.sh debian 10 && reboot</code></pre>
-### rebuil deb 11
+## rebuil deb 11
 
 <pre><code>curl -O https://raw.githubusercontent.com/bin456789/reinstall/main/reinstall.sh && bash reinstall.sh debian 11 && reboot</code></pre>
-### rebuild deb 12
+## rebuild deb 12
 
 <pre><code>curl -O https://raw.githubusercontent.com/bin456789/reinstall/main/reinstall.sh && bash reinstall.sh debian 12 && reboot</code></pre>
-### rebuild ubuntu 20.04
+## rebuild ubuntu 20.04
 
 <pre><code>curl -O https://raw.githubusercontent.com/bin456789/reinstall/main/reinstall.sh && bash reinstall.sh ubuntu 20.04 && reboot</code></pre>
-### rebuild ubuntu 22
+## rebuild ubuntu 22
 
 <pre><code>curl -O https://raw.githubusercontent.com/bin456789/reinstall/main/reinstall.sh && bash reinstall.sh ubuntu 22.04 && reboot</code></pre>
-### rebuild ubuntu 24
+## rebuild ubuntu 24
 
 <pre><code>curl -O https://raw.githubusercontent.com/bin456789/reinstall/main/reinstall.sh && bash reinstall.sh ubuntu 24.04 && reboot</code></pre>
 
-### Rebuild ubuntu 25
+## Rebuild ubuntu 25
 ```
 curl -O https://raw.githubusercontent.com/bin456789/reinstall/main/reinstall.sh && bash reinstall.sh ubuntu 25.04 && reboot
 ```
 
+## FITUR
 
-**FEATURES:**
-- Cek Usage Cpu & Ram with gotop
-- Telegram Bot Notifications
-- Telegram Bot Panel
-- Custom Ganti UUID Xray
-- Limit Quota & Check Total Usage Quota for XRay
-- Auto Lock User Xray Multi Login
-- DLL
+- Cek penggunaan CPU & RAM dengan gotop
+- Notifikasi Bot Telegram
+- Panel Bot Telegram
+- Ubah UUID Xray secara kustom
+- Batas Kuota & Cek Total Penggunaan Kuota untuk Xray
+- Kunci Otomatis Pengguna Xray yang Multi Login
+- Dan lain-lain
 
-**SUPPORT DI OS:**
+
+## MENDUKUNG DI OS:
 - Debian:
-- 10 (Buster): Stable
-- 11 (Bullseye): Stable
-- 12 (Bookworm): Stable
+
+- 10 (Buster): Stabil
+- 11 (Bullseye): Stabil
+- 12 (Bookworm): Stabil
 
 - Ubuntu:
-- 20.04 LTS (Focal): Stable
-- 22.04 LTS (Jammy): Stable
-- 24.04 LTS (Noble): Stable
 
-**SUPPORT DI PORTS:**
+- 20.04 LTS (Focal): Stabil
+- 22.04 LTS (Jammy): Stabil
+- 24.04 LTS (Noble): Stabil
+- 25.04 LTS (Noble): Stabil (Kecuali Bot)
+
+
+## MENDUKUNG DI PORT:
+
 - HTTP  : 80, 8080, 2082, 2086, 8880
 - HTTPS : 443, 2083, 8443
 
-**Minimum VPS Specifications:**
+## Spesifikasi Minimum VPS:
+
 - RAM: 1 GB (Minimal)
-- SSD: 10GB
+- SSD: 10 GB
 - 1 vCPU
 
 
-**COPYRIGHT & LICENSE:**
-- Script is licensed under CC BY-SA 4.0.
-- Copyright Â© 2025 by Lite Vermilion Project
+## HAK CIPTA & LISENSI:
+
+Skrip dilisensikan di bawah CC BY-SA 4.0.
+Hak Cipta © 2025 oleh Lite Vermilion Project
+
+
