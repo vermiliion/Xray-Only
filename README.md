@@ -12,10 +12,10 @@ Jadi Kasihan kan Untuk Yg Lain Yang Sebenarnya Gratis Tapi Malah Di Perjual Beli
 https://t.me/xiaokecil
 - Nanti Dapet Source Code Aslinya, Harganya Cukup Rp.95k Aja Untuk Sahabat Sekalian 🫡
 - Saya Juga Ada Script Yang ada Menu SSH nya Lengkap Sama Bot Untuk Jualan 😁
-- Harga Sewanya:
-- 10k aja per 1 bulan 1 IP VPS
-- 25k aja per 3 Bulan 1 IP VPS
-- 75k aja per 1 Tahun 2 IP VPS
+- Harga Sewa Script nya:
+- 10k aja per 1 bulan Untuk 1 IP VPS
+- 25k aja per 3 Bulan Untuk 1 IP VPS
+- 75k aja per 1 Tahun Untuk 2 IP VPS
 
 **Cara Pasang Script**
 - Gunakan Perintah Ini Untuk Install scriptnya, salin lalu tempel atau paste di VPS Secara Berurutan:
