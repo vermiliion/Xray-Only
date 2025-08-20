@@ -19,7 +19,7 @@ https://t.me/xiaokecil
 
 ### Cara Pasang Script
 
-- Jangan Lupa Gabung Channel Dulu Sebelum Pasang Script 
+- Jangan Lupa Gabung Channel Dulu Sebelum Pasang Scriptnya
 - Biar Berkah Serta Biar Tahu Juga Tentang Updetan Terbaru dari Scriptnya🫡
 https://t.me/freenetlite
 - Gunakan Perintah Ini Untuk Install scriptnya, salin lalu tempel atau paste di VPS Secara Berurutan:
