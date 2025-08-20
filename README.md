@@ -83,13 +83,14 @@ curl -O https://raw.githubusercontent.com/bin456789/reinstall/main/reinstall.sh 
 - 10 (Buster): Stabil
 - 11 (Bullseye): Stabil
 - 12 (Bookworm): Stabil
+- 13 (trixie) : Tes Sendiri karena saya belom coba
 
 - Ubuntu:
 
 - 20.04 LTS (Focal): Stabil
 - 22.04 LTS (Jammy): Stabil
 - 24.04 LTS (Noble): Stabil
-- 25.04 LTS (Noble): Stabil (Kecuali Bot)
+- 25.04 LTS (Noble): Stabil (Kecuali Bot Ndak Jalan)
 
 
 **MENDUKUNG DI PORT:**
