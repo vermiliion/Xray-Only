@@ -20,7 +20,7 @@ https://t.me/xiaokecil
 ### Cara Pasang Script
 
 - Jangan Lupa Gabung Channel Dulu Sebelum Pasang Scriptnya
-- Biar Berkah Serta Biar Tahu Juga Tentang Updetan Terbaru dari Scriptnya🫡
+- Biar Berkah, Serta Biar Tahu Juga Tentang Updetan Terbaru dari Scriptnya🫡
 https://t.me/freenetlite
 - Gunakan Perintah Ini Untuk Install scriptnya, salin lalu tempel atau paste di VPS Secara Berurutan:
 
@@ -36,12 +36,13 @@ apt update -y && apt upgrade -y --fix-missing && apt install -y xxd bzip2 wget c
 ```
 screen -S setup-session bash -c "wget -q https://raw.githubusercontent.com/vermiliion/Xray-Only/main/setup.sh && chmod +x setup.sh && ./setup.sh"
 ```
-**INFO:**
-- Jika mengalami putus koneksi saat instalasi, sambungkan kembali dengan perintah:
+### INFORMASI
+- Jika mengalami putus koneksi saat penginstallan atau instalasi
+- sambungkan kembali dengan perintah berikut di bawah ini dan paste di vps:
 ```
 screen -r -d setup
 ```
-**Untuk Perbarui Script**
+### Untuk Perbarui Script
 ```
 wget -q https://raw.githubusercontent.com/vermiliion/Xray-Only/main/update.sh && chmod +x update.sh && ./update.sh && rm -rf update.sh
 ```
@@ -71,7 +72,7 @@ wget -q https://raw.githubusercontent.com/vermiliion/Xray-Only/main/update.sh &&
 curl -O https://raw.githubusercontent.com/bin456789/reinstall/main/reinstall.sh && bash reinstall.sh ubuntu 25.04 && reboot
 ```
 
-**FITUR:**
+### FITUR SCRIPT
 
 - Cek penggunaan CPU & RAM dengan gotop
 - Notifikasi Bot Telegram
