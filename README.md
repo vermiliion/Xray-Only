@@ -17,7 +17,7 @@ https://t.me/xiaokecil
 - 25k aja per 3 Bulan Untuk 1 IP VPS
 - 75k aja per 1 Tahun Untuk 2 IP VPS
 
-**Cara Pasang Script**
+### Cara Pasang Script
 
 - Jangan Lupa Gabung Channel Dulu Sebelum Pasang Script 
 - Biar Berkah Serta Biar Tahu Juga Tentang Updetan Terbaru dari Scriptnya🫡
