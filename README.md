@@ -18,6 +18,10 @@ https://t.me/xiaokecil
 - 75k aja per 1 Tahun Untuk 2 IP VPS
 
 **Cara Pasang Script**
+
+- Jangan Lupa Gabung Channel Dulu Sebelum Pasang Script 
+- Biar Berkah Serta Biar Tahu Juga Tentang Updetan Terbaru dari Scriptnya🫡
+https://t.me/freenetlite
 - Gunakan Perintah Ini Untuk Install scriptnya, salin lalu tempel atau paste di VPS Secara Berurutan:
 
 - Langkah Ke 1
