@@ -34,7 +34,7 @@ function send-ip() {
 <b>» Status:</b> <code>User telah dikunci</code>
 <b>» Durasi Penguncian 15 Menit</b>
 <code>────────────────────</code>
-<b>🤖 » Aku Beliau Sudah Di Kunci Karena Nakal</b>
+<b>🤖 » Akun Beliau Sudah Di Kunci Karena Nakal</b>
 <code>────────────────────</code>
 "
     curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
