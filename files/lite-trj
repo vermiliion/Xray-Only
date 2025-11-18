@@ -6,7 +6,7 @@ BACKUP_DIR="/etc/xray/backups"
 domainku=$(cat /etc/xray/domain)
 ISP=$(cat /etc/xray/isp)
 
-LOCK_DURATION_SECONDS=18000                         
+LOCK_DURATION_SECONDS=3600                       
 FULL_LOG_FILE="/var/log/xray/access.log"
 FILTERED_LOG_FILE="/tmp/xray_filtered_temp.log"
 
@@ -30,7 +30,7 @@ function send-ip() {
 <b>» Limit IP:</b> <code>${limit_ip} HP</code>
 <b>» IP Login:</b> <code>${login_count} HP</code>
 <b>» Status:</b> <code>User telah dikunci</code>
-<b>» Durasi Penguncian 5 Jam</b>
+<b>» Durasi Penguncian 1 Jam</b>
 <code>────────────────────</code>
 <b>🤖 » User Nakal Sudah Di Kunci</b>
 <code>────────────────────</code>
