@@ -5,21 +5,19 @@ XRAY_CONFIG="/etc/xray/config.json"
 BACKUP_DIR="/etc/xray/backups"
 domainku=$(cat /etc/xray/domain)
 ISP=$(cat /etc/xray/isp)
-#responden=$(curl -s "http://ip-api.com/json/?fields=country,region,city,timezone,isp")
-#ISPKU=$(echo "$responden" | jq -r '.isp')
-mkdir -p /etc/xray/backups
-mkdir -p /etc/vless/
-mkdir -p /etc/limit/vless/ip/
 
-TIME_WINDOW_MINUTES=2
-LIVENESS_THRESHOLD_SECONDS=60
+LOCK_DURATION_SECONDS=18000                         
 FULL_LOG_FILE="/var/log/xray/access.log"
 FILTERED_LOG_FILE="/tmp/xray_filtered_temp.log"
 
+mkdir -p "$BACKUP_DIR"
+mkdir -p /etc/vless/
+mkdir -p /etc/limit/vless/ip/
+
 function send-ip() {
+    if [[ ! -f "/etc/bot/.bot.db" ]]; then return; fi # <-- FIXED
     CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
     KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
-    TIME="10"
     URL="https://api.telegram.org/bot$KEY/sendMessage"
     TEXT="
 <code>────────────────────</code>
@@ -29,21 +27,21 @@ function send-ip() {
 <b>» Domain:</b> <code>${domainku}</code>
 <b>» Protocol:</b> <code>vless</code>
 <b>» User:</b> <code>${user}</code>
-<b>» Limit IP:</b> <code>${limit_ip} IP</code>
-<b>» IP Login:</b> <code>${login_count} IP</code>
+<b>» Limit IP:</b> <code>${limit_ip} HP</code>
+<b>» IP Login:</b> <code>${login_count} HP</code>
 <b>» Status:</b> <code>User telah dikunci</code>
-<b>» Durasi Penguncian 15 Menit</b>
+<b>» Durasi Penguncian 5 Jam</b>
 <code>────────────────────</code>
-<b>🤖 » Akun Beliau Sudah Di Kunci Karena Nakal</b>
+<b>🤖 » User Nakal Sudah Di Kunci</b>
 <code>────────────────────</code>
 "
-    curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
+    curl -s --max-time 10 -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 }
 
 function send-unban-notif() {
+    if [[ ! -f "/etc/bot/.bot.db" ]]; then return; fi # <-- FIXED
     CHATID=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 3)
     KEY=$(grep -E "^#bot# " "/etc/bot/.bot.db" | cut -d ' ' -f 2)
-    TIME="10"
     URL="https://api.telegram.org/bot$KEY/sendMessage"
     TEXT="
 <code>────────────────────</code>
@@ -55,10 +53,10 @@ function send-unban-notif() {
 <b>» User:</b> <code>${unlocked_user}</code>
 <b>» Status:</b> <code>Telah Bebas Dari Penguncian</code>
 <code>────────────────────</code>
-<b>🤖 » Akun Beliau Sudah Di Bebaskan</b>
+<b>🤖 » User Di Bebaskan Dari Penguncian</b>
 <code>────────────────────</code>
 "
-    curl -s --max-time $TIME -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
+    curl -s --max-time 10 -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
 }
 
 reload_services() {
@@ -95,7 +93,7 @@ function lock_user() {
     if grep -qw "vless:${user}" "$LOCK_FILE"; then
         echo -e "User '${user}' on vless is already locked!"
         return
-    fi
+    fi # <-- FIXED
 
     echo "vless:${user}:$(date +%s)" >> "$LOCK_FILE"
     modify_xray_config "lock" "$user"
@@ -115,7 +113,7 @@ function unlock_expired_users() {
         if [[ "$protocol" == "vless" && -n "$user" && -n "$lock_timestamp" ]]; then
             local elapsed_time=$((current_time - lock_timestamp))
 
-            if [[ "$elapsed_time" -ge 900 ]]; then
+            if [[ "$elapsed_time" -ge "$LOCK_DURATION_SECONDS" ]]; then
                 echo "Attempting to unlock vless user: ${user} (locked for ${elapsed_time} seconds)"
                 modify_xray_config "unlock" "$user"
                 unlocked_user="$user"
@@ -139,53 +137,45 @@ function unlock_expired_users() {
 
 function memulai_pengecekan() {
     clear
-    > /tmp/other.txt
-
+    
     unlock_expired_users
 
-    search_pattern=$(for i in $(seq 0 $TIME_WINDOW_MINUTES); do date -d "$i minutes ago" +'%Y/%m/%d %H:%M'; done | tr '\n' '|' | sed 's/|$//')
-    grep -E "($search_pattern)" "$FULL_LOG_FILE" > "$FILTERED_LOG_FILE"
+    tail -n 5000 "$FULL_LOG_FILE" > "$FILTERED_LOG_FILE"
 
     mapfile -t data < <(grep '#&' /etc/xray/config.json 2>/dev/null | awk '{print $2}' | sort -u)
-    now=$(date +%s)
-
+    
     for user in "${data[@]}"; do
         [[ -z "$user" ]] && continue
 
-        mapfile -t unique_ips < <(grep "email: $user" "$FILTERED_LOG_FILE" | awk '{print $3}' | cut -d: -f1 | sort -u)
+        mapfile -t unique_local_ports < <(
+            grep "email: $user" "$FILTERED_LOG_FILE" \
+            | awk '{
+                source_col = ($4 ~ /127\.0\.0\.1:/) ? $4 : $3
+                
+                gsub("tcp:", "", source_col)
+                gsub("udp:", "", source_col)
+                
+                port_only = source_col
+                sub(/.*:/, "", port_only)
+                
+                print port_only
+            }' \
+            | sort -u
+        )
 
-        live_ip_count=0
+        login_count=${#unique_local_ports[@]}
 
-        for ip in "${unique_ips[@]}"; do
-            case "$ip" in
-                127.0.0.1|10.*|172.1[6-9].*|172.2[0-9].*|172.3[0-1].*|192.168.*) continue ;;
-            esac
-
-            last_line=$(grep "$ip" "$FILTERED_LOG_FILE" | grep "email: $user" | tail -n 1)
-            [[ -z "$last_line" ]] && continue
-
-            timestamp_str=$(echo "$last_line" | awk '{print $1, $2}')
-            last_seen_timestamp=$(date -d "$timestamp_str" +%s 2>/dev/null || echo 0)
-
-            if [[ "$last_seen_timestamp" -ne 0 ]]; then
-                time_diff=$((now - last_seen_timestamp))
-                if [[ "$time_diff" -le "$LIVENESS_THRESHOLD_SECONDS" ]]; then
-                    ((live_ip_count++))
-                fi
-            fi
-        done
-
-        if [[ "$live_ip_count" -gt 0 ]]; then
+        if [[ "$login_count" -gt 0 ]]; then
             raw_limit_ip=$(cat /etc/limit/vless/ip/"$user" 2>/dev/null || echo 0)
             limit_ip=$(echo "$raw_limit_ip" | grep -o '[0-9]\+')
 
-            login_count=$live_ip_count
+            echo -e "User         : $user"
+            echo -e "Limit Login  : ${limit_ip} HP"
+            echo -e "User Login   : $login_count HP"
 
-            echo -e "User          : $user"
-            echo -e "Limit Login   : ${limit_ip} IP"
-            echo -e "Active IP     : $login_count IP"
-
-            if [[ "$login_count" -gt "$limit_ip" ]]; then
+            if [[ "$limit_ip" -eq 0 ]]; then
+                :
+            elif [[ "$login_count" -gt "$limit_ip" ]]; then
                 send-ip
                 lock_user "$user"
                 continue
@@ -193,8 +183,8 @@ function memulai_pengecekan() {
         fi
     done
     
-    rm -f /tmp/other.txt "$FILTERED_LOG_FILE"
-    echo -n > /var/log/xray/access.log
+    rm -f "$FILTERED_LOG_FILE"
+    echo -n > /var/log/xray/access.log 
     sleep 2
 }
 
