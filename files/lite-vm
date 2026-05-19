@@ -1,5 +1,4 @@
 #!/bin/bash
-clear
 LOCK_FILE="/etc/user_locks.db"
 XRAY_CONFIG="/etc/xray/config.json"
 BACKUP_DIR="/etc/xray/backups"
@@ -13,6 +12,14 @@ FILTERED_LOG_FILE="/tmp/xray_filtered_temp.log"
 mkdir -p "$BACKUP_DIR"
 mkdir -p /etc/vmess/
 mkdir -p /etc/limit/vmess/ip/
+
+function con() {
+    local -i bytes=${1:-0}
+    if [[ $bytes -lt 1024 ]]; then echo "${bytes} B";
+    elif [[ $bytes -lt 1048576 ]]; then echo "$(( (bytes + 1023)/1024 )) KB";
+    elif [[ $bytes -lt 1073741824 ]]; then echo "$(( (bytes + 1048575)/1048576 )) MB";
+    else echo "$(( (bytes + 1073741823)/1073741824 )) GB"; fi
+}
 
 function send-ip() {
     if [[ ! -f "/etc/bot/.bot.db" ]]; then return; fi # <-- FIXED
@@ -29,6 +36,8 @@ function send-ip() {
 <b>» User:</b> <code>${user}</code>
 <b>» Limit IP:</b> <code>${limit_ip} HP</code>
 <b>» IP Login:</b> <code>${login_count} HP</code>
+<b>» Limit Quota:</b> <code>${limit_quota_ku}</code>
+<b>» Usage Quota:</b> <code>${usage_quota_ku}</code>
 <b>» Status:</b> <code>User telah dikunci</code>
 <b>» Durasi Penguncian 1 Jam</b>
 <code>────────────────────</code>
@@ -140,7 +149,7 @@ function memulai_pengecekan() {
     
     unlock_expired_users
 
-    tail -n 5000 "$FULL_LOG_FILE" > "$FILTERED_LOG_FILE"
+    tail -n 100000 "$FULL_LOG_FILE" > "$FILTERED_LOG_FILE"
 
     mapfile -t data < <(grep '###' /etc/xray/config.json 2>/dev/null | awk '{print $2}' | sort -u)
     
@@ -168,10 +177,14 @@ function memulai_pengecekan() {
         if [[ "$login_count" -gt 0 ]]; then
             raw_limit_ip=$(cat /etc/limit/vmess/ip/"$user" 2>/dev/null || echo 0)
             limit_ip=$(echo "$raw_limit_ip" | grep -o '[0-9]\+')
+            limit_quota_ku=$(con "$(cat "/etc/vmess/$user" 2>/dev/null || echo 0)")
+            usage_quota_ku=$(con "$(cat "/etc/limit/vmess/${user}" 2>/dev/null || echo 0)")
 
             echo -e "User         : $user"
             echo -e "Limit Login  : ${limit_ip} HP"
             echo -e "User Login   : $login_count HP"
+            echo -e "Limit Quota  : ${limit_quota_ku}"
+            echo -e "Usage Quota  : ${usage_quota_ku}"
 
             if [[ "$limit_ip" -eq 0 ]]; then
                 :
